@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>4.4</version>
+    <date>2020-06-03T09:35:43Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template IPMI Intel S2600WT2R</template>
+            <name>Template IPMI Intel S2600WT2R</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Fans</name>
+                </application>
+                <application>
+                    <name>Processor</name>
+                </application>
+                <application>
+                    <name>Temperature</name>
+                </application>
+                <application>
+                    <name>Voltage</name>
+                </application>
+                <application>
+                    <name>Watts</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>Baseboard Left Rear Temp</name>
+                    <type>IPMI</type>
+                    <key>ipmi.intel.BB_Lft_Rear_Temp</key>
+                    <units>C</units>
+                    <ipmi_sensor>BB Lft Rear Temp</ipmi_sensor>
+                    <applications>
+                        <application>
+                            <name>Temperature</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Baseboard Right Rear Temp</name>
+                    <type>IPMI</type>
+                    <key>ipmi.intel.BB_Rt_Rear_Temp</key>
+                    <units>C</units>
+                    <ipmi_sensor>BB Rt Rear Temp</ipmi_sensor>
+                    <applications>
+                        <application>
+                            <name>Temperature</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Exit Air Temp</name>
+                    <type>IPMI</type>
+                    <key>ipmi.intel.Exit_Air_Temp</key>
+                    <units>C</units>
+                    <ipmi_sensor>Exit Air Temp</ipmi_sensor>
+                    <applications>
+                        <application>
+                            <name>Temperature</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Front Panel Temp</name>
+                    <type>IPMI</type>
+                    <key>ipmi.intel.Front_Panel_Temp</key>
+                    <units>C</units>
+                    <ipmi_sensor>Front Panel Temp</ipmi_sensor>
+                    <applications>
+                        <application>
+                            <name>Temperature</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>({TRIGGER.VALUE}=0 and {last()}&gt;25) or&#13;
+({TRIGGER.VALUE}=1 and {last()}&gt;20)</expression>
+                            <name>Front Panel Air Temp - {HOST.NAME}</name>
+                            <priority>WARNING</priority>
+                            <description>Проверяем температуры воздуха входящего через переднюю панель сервера. По нему можно судить о температуре воздуха в серверной.</description>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Processor 1 Status</name>
+                    <type>IPMI</type>
+                    <key>ipmi.intel.p1_status</key>
+                    <history>1w</history>
+                    <ipmi_sensor>P1 Status</ipmi_sensor>
+                    <applications>
+                        <application>
+                            <name>Processor</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>IPMI Processor</name>
+                    </valuemap>
+                </item>
+                <item>
+                    <name>Processor 1 Thermal Margin</name>
+                    <type>IPMI</type>
+                    <key>ipmi.intel.p1_therm_margin</key>
+                    <history>1w</history>
+                    <value_type>FLOAT</value_type>
+                    <units>C</units>
+                    <ipmi_sensor>P1 Therm Margin</ipmi_sensor>
+                    <applications>
+                        <application>
+                            <name>Processor</name>
+                        </application>
+                        <application>
+                            <name>Temperature</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Processor 2 Status</name>
+                    <type>IPMI</type>
+                    <key>ipmi.intel.p2_status</key>
+                    <history>1w</history>
+                    <ipmi_sensor>P2 Status</ipmi_sensor>
+                    <applications>
+                        <application>
+                            <name>Processor</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>IPMI Processor</name>
+                    </valuemap>
+                </item>
+                <item>
+                    <name>Processor 2 Thermal Margin</name>
+                    <type>IPMI</type>
+                    <key>ipmi.intel.p2_therm_margin</key>
+                    <history>1w</history>
+                    <value_type>FLOAT</value_type>
+                    <units>C</units>
+                    <ipmi_sensor>P2 Therm Margin</ipmi_sensor>
+                    <applications>
+                        <application>
+                            <name>Processor</name>
+                        </application>
+                        <application>
+                            <name>Temperature</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Power Supply 1 Status</name>
+                    <type>IPMI</type>
+                    <key>ipmi.intel.PS1_Status</key>
+                    <ipmi_sensor>PS1 Status</ipmi_sensor>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=9</expression>
+                            <name>Power Supply 1 State - {HOST.NAME}</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Power Supply 2 Status</name>
+                    <type>IPMI</type>
+                    <key>ipmi.intel.PS2_Status</key>
+                    <ipmi_sensor>PS2 Status</ipmi_sensor>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=9</expression>
+                            <name>Power Supply 2 State - {HOST.NAME}</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>System Fan 1A</name>
+                    <type>IPMI</type>
+                    <key>ipmi.intel.System_Fan_1A</key>
+                    <units>RPM</units>
+                    <ipmi_sensor>System Fan 1A</ipmi_sensor>
+                    <applications>
+                        <application>
+                            <name>Fans</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>System Fan 1B</name>
+                    <type>IPMI</type>
+                    <key>ipmi.intel.System_Fan_1B</key>
+                    <units>RPM</units>
+                    <ipmi_sensor>System Fan 1B</ipmi_sensor>
+                    <applications>
+                        <application>
+                            <name>Fans</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>System Fan 2A</name>
+                    <type>IPMI</type>
+                    <key>ipmi.intel.System_Fan_2A</key>
+                    <units>RPM</units>
+                    <ipmi_sensor>System Fan 2A</ipmi_sensor>
+                    <applications>
+                        <application>
+                            <name>Fans</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>System Fan 2B</name>
+                    <type>IPMI</type>
+                    <key>ipmi.intel.System_Fan_2B</key>
+                    <units>RPM</units>
+                    <ipmi_sensor>System Fan 2B</ipmi_sensor>
+                    <applications>
+                        <application>
+                            <name>Fans</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>System Fan 3A</name>
+                    <type>IPMI</type>
+                    <key>ipmi.intel.System_Fan_3A</key>
+                    <units>RPM</units>
+                    <ipmi_sensor>System Fan 3A</ipmi_sensor>
+                    <applications>
+                        <application>
+                            <name>Fans</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>System Fan 3B</name>
+                    <type>IPMI</type>
+                    <key>ipmi.intel.System_Fan_3B</key>
+                    <units>RPM</units>
+                    <ipmi_sensor>System Fan 3B</ipmi_sensor>
+                    <applications>
+                        <application>
+                            <name>Fans</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>System Fan 4A</name>
+                    <type>IPMI</type>
+                    <key>ipmi.intel.System_Fan_4A</key>
+                    <units>RPM</units>
+                    <ipmi_sensor>System Fan 4A</ipmi_sensor>
+                    <applications>
+                        <application>
+                            <name>Fans</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>System Fan 4B</name>
+                    <type>IPMI</type>
+                    <key>ipmi.intel.System_Fan_4B</key>
+                    <units>RPM</units>
+                    <ipmi_sensor>System Fan 4B</ipmi_sensor>
+                    <applications>
+                        <application>
+                            <name>Fans</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>System Fan 5A</name>
+                    <type>IPMI</type>
+                    <key>ipmi.intel.System_Fan_5A</key>
+                    <units>RPM</units>
+                    <ipmi_sensor>System Fan 5A</ipmi_sensor>
+                    <applications>
+                        <application>
+                            <name>Fans</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>System Fan 5B</name>
+                    <type>IPMI</type>
+                    <key>ipmi.intel.System_Fan_5B</key>
+                    <units>RPM</units>
+                    <ipmi_sensor>System Fan 5B</ipmi_sensor>
+                    <applications>
+                        <application>
+                            <name>Fans</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>System Fan 6A</name>
+                    <type>IPMI</type>
+                    <key>ipmi.intel.System_Fan_6A</key>
+                    <units>RPM</units>
+                    <ipmi_sensor>System Fan 6A</ipmi_sensor>
+                    <applications>
+                        <application>
+                            <name>Fans</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>System Fan 6B</name>
+                    <type>IPMI</type>
+                    <key>ipmi.intel.System_Fan_6B</key>
+                    <units>RPM</units>
+                    <ipmi_sensor>System Fan 6B</ipmi_sensor>
+                    <applications>
+                        <application>
+                            <name>Fans</name>
+                        </application>
+                    </applications>
+                </item>
+            </items>
+        </template>
+    </templates>
+    <graphs>
+        <graph>
+            <name>CPU Temperature</name>
+            <graph_items>
+                <graph_item>
+                    <color>1A7C11</color>
+                    <item>
+                        <host>Template IPMI Intel S2600WT2R</host>
+                        <key>ipmi.intel.p1_therm_margin</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <color>F63100</color>
+                    <item>
+                        <host>Template IPMI Intel S2600WT2R</host>
+                        <key>ipmi.intel.p2_therm_margin</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <name>Temperature</name>
+            <graph_items>
+                <graph_item>
+                    <color>1A7C11</color>
+                    <item>
+                        <host>Template IPMI Intel S2600WT2R</host>
+                        <key>ipmi.intel.BB_Lft_Rear_Temp</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <color>F63100</color>
+                    <item>
+                        <host>Template IPMI Intel S2600WT2R</host>
+                        <key>ipmi.intel.BB_Rt_Rear_Temp</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <color>2774A4</color>
+                    <item>
+                        <host>Template IPMI Intel S2600WT2R</host>
+                        <key>ipmi.intel.Front_Panel_Temp</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>3</sortorder>
+                    <color>A54F10</color>
+                    <item>
+                        <host>Template IPMI Intel S2600WT2R</host>
+                        <key>ipmi.intel.Exit_Air_Temp</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+    </graphs>
+    <value_maps>
+        <value_map>
+            <name>IPMI Processor</name>
+            <mappings>
+                <mapping>
+                    <value>0</value>
+                    <newvalue>Processor not installed</newvalue>
+                </mapping>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>IERR</newvalue>
+                </mapping>
+                <mapping>
+                    <value>2</value>
+                    <newvalue>Thermal Trip</newvalue>
+                </mapping>
+                <mapping>
+                    <value>4</value>
+                    <newvalue>FRB1/BIST failure</newvalue>
+                </mapping>
+                <mapping>
+                    <value>8</value>
+                    <newvalue>FRB2/Hang in POST failure</newvalue>
+                </mapping>
+                <mapping>
+                    <value>16</value>
+                    <newvalue>FRB3/Processor Startup/Initialization failure</newvalue>
+                </mapping>
+                <mapping>
+                    <value>32</value>
+                    <newvalue>Configuration Error</newvalue>
+                </mapping>
+                <mapping>
+                    <value>64</value>
+                    <newvalue>SM BIOS Uncorrectable CPU-complex Error</newvalue>
+                </mapping>
+                <mapping>
+                    <value>128</value>
+                    <newvalue>Processor Presence detected</newvalue>
+                </mapping>
+                <mapping>
+                    <value>256</value>
+                    <newvalue>Processor disabled</newvalue>
+                </mapping>
+                <mapping>
+                    <value>512</value>
+                    <newvalue>Terminator Presence Detected</newvalue>
+                </mapping>
+                <mapping>
+                    <value>1024</value>
+                    <newvalue>Processor Automatically Throttled</newvalue>
+                </mapping>
+                <mapping>
+                    <value>2048</value>
+                    <newvalue>Machine Check Exception Uncorrectable</newvalue>
+                </mapping>
+                <mapping>
+                    <value>4096</value>
+                    <newvalue>Correctable Machine Check Error</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+    </value_maps>
+</zabbix_export>
